@@ -2,6 +2,13 @@ package com.cr.bit;
 
 public class BitOperation {
 
+    public static void main(String[] args) {
+        BitOperation bo = new BitOperation();
+        bo.bitAND();
+        bo.bitOR();
+        bo.bitXOR();
+    }
+
     //与运算
     //&
     //两个位都为1时,才为1
@@ -29,10 +36,4 @@ public class BitOperation {
         System.out.println(1 ^ 0); //1
     }
 
-    public static void main(String[] args) {
-        BitOperation bo = new BitOperation();
-        bo.bitAND();
-        bo.bitOR();
-        bo.bitXOR();
-    }
 }
