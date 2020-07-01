@@ -1,9 +1,9 @@
 package com.cr.pattern.singleton;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+import java.io.Serializable;
 
-public class HungrySingleton {
+//为了测试序列化问题才增加的Serializable接口
+public class HungrySingleton implements Serializable {
     private static HungrySingleton instance = new HungrySingleton();
 
     private HungrySingleton() {
@@ -11,21 +11,5 @@ public class HungrySingleton {
 
     public static HungrySingleton getInstance() {
         return instance;
-    }
-
-    public static void main(String[] args) throws IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchMethodException {
-        //使用反射依旧可以创建对象
-        Constructor<HungrySingleton> declaredConstructor = HungrySingleton.class.getDeclaredConstructor();
-        declaredConstructor.setAccessible(true);
-        HungrySingleton instance = declaredConstructor.newInstance();
-
-        //饿汉模式可以在构造函数中使用如下方式防止反射创建对象
-        /**
-         * private HungrySingleton() {
-         *   if (instance != null) {
-         *     throw new RuntimeException("不允许使用反射创建对象");
-         *   }
-         * }
-         */
     }
 }
