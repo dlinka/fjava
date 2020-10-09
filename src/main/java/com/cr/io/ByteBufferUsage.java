@@ -30,6 +30,8 @@ public class ByteBufferUsage {
         System.out.println(buffer.limit());
 
         //get之前需要置位
+        //看到这个方法你才知道limit和capacity的区别
+        //flip的源码会将limit置位4
         buffer.flip();
 
         //0
