@@ -1,6 +1,6 @@
 package com.cr.generic;
 
-public class Generic1<T> {
+public class Generic<T> {
     private T t;
 
     public void test(T t) {
