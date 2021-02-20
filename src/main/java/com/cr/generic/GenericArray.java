@@ -6,7 +6,7 @@ import java.util.List;
 public class GenericArray {
 
     public static void main(String[] args) {
-        Generic1[] g1 = new Generic1[4];
+        Generic[] g1 = new Generic[4];
 
         //数组不能使用泛型
         //Generic1<Integer>[] g1Array = new Generic1<Integer>[4];
