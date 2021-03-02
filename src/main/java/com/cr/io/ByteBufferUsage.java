@@ -4,40 +4,26 @@ import java.nio.ByteBuffer;
 
 public class ByteBufferUsage {
 
-    public static void main(String[] args) {
-        //init();
-        //putget();
-        //loop();
-        slice();
-    }
-
     //初始化
     private static void init() {
-        //1
-        ByteBuffer buffer1 = ByteBuffer.allocate(10);
+        ByteBuffer bb1 = ByteBuffer.allocate(10);
 
-        //2
         byte[] arr = new byte[10];
-        ByteBuffer buffer2 = ByteBuffer.wrap(arr);
+        ByteBuffer bb2 = ByteBuffer.wrap(arr);
     }
 
-    private static void putget(){
+    private static void flip(){
         ByteBuffer buffer = ByteBuffer.allocate(10);
         buffer.putInt(10);
-        //4
-        System.out.println(buffer.position());
-        //10
-        System.out.println(buffer.limit());
+        System.out.println(buffer.position()); //4
+        System.out.println(buffer.limit()); //10
 
-        //get之前需要置位
-        //看到这个方法你才知道limit和capacity的区别
-        //flip的源码会将limit置位4
+        //limit等于4,position等于0
+        //这里就看出来limit的作用:如果想读取已经写入的数据,就需要一个标识去标识数据的结尾
         buffer.flip();
 
-        //0
-        System.out.println(buffer.position());
-        //4
-        System.out.println(buffer.limit());
+        System.out.println(buffer.position()); //0
+        System.out.println(buffer.limit()); //4
         System.out.println(buffer.getInt());
     }
 
@@ -54,16 +40,21 @@ public class ByteBufferUsage {
     }
 
     private static void slice() {
-        ByteBuffer buffer = ByteBuffer.allocate(10);
-        buffer.putInt(10);
+        ByteBuffer bb1 = ByteBuffer.allocate(10);
+        bb1.putInt(10);
 
-        ByteBuffer slice = buffer.slice();
-        //0
-        System.out.println(slice.position());
-        //6
-        System.out.println(slice.limit());
-        //6
-        System.out.println(slice.capacity());
+        //返回position到limit之间的数据
+        ByteBuffer bb2 = bb1.slice();
+        System.out.println(bb2.position()); //0
+        System.out.println(bb2.limit()); //6
+        System.out.println(bb2.capacity()); //6
     }
+
+    public static void main(String[] args) {
+        init();
+        loop();
+        slice();
+    }
+
 
 }
